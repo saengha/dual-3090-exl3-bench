@@ -179,6 +179,8 @@ def stream_chat(
         "stream_options": {"include_usage": True},
         "temperature": temperature,
         "max_tokens": output_tokens,
+        # TabbyAPI: ban EOS/stop until output_tokens so each cell decodes the target length.
+        "min_tokens": output_tokens,
     }
     body = json.dumps(payload).encode("utf-8")
     headers = {
